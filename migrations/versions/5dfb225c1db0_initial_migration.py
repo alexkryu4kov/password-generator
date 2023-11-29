@@ -1,4 +1,4 @@
-"""imitial migration
+"""initial migration
 
 Revision ID: 5dfb225c1db0
 Revises: 
