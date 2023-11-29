@@ -1,0 +1,54 @@
+from flask import render_template, redirect, url_for, request, flash
+
+from flask_login import current_user, login_user, login_required, logout_user
+
+from app.db import db
+from app.login import login_bp
+from app.login.models import User
+from app.login.forms import LoginForm, RegistrationForm
+
+
+@login_bp.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
+
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            username = request.form['username']
+            password = request.form['password']
+
+            user = User.query.filter_by(username=username).first()
+            if user and user.check_password(password):
+                login_user(user)
+                flash('Login successful', 'success')
+                return redirect(url_for('main.index'))
+            else:
+                flash('Login failed', 'danger')
+    return render_template('login/login.html', form=form)
+
+
+@login_bp.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have been logged out', 'success')
+    return redirect(url_for('main.index'))
+
+
+@login_bp.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+
+    if form.validate_on_submit():
+        user = User(username=form.username.data)
+        user.set_password(form.password.data)
+
+        db.session.add(user)
+        db.session.commit()
+
+        flash('Your account has been created!', 'success')
+        return redirect(url_for('login.login'))
+
+    return render_template('login/register.html', title='Register', form=form)
