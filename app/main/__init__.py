@@ -1,10 +1,7 @@
-from flask import Blueprint, render_template
-from app.main.routes import PasswordGeneratorView
+from flask import Blueprint
 
 
 main_bp = Blueprint('main', __name__, template_folder='templates')
 
 
-@main_bp.route('/')
-def index():
-    return render_template('index.html')
+from . import routes

@@ -1,10 +1,24 @@
-from app.main.password_generator import PasswordGenerator
+from app.main import main_bp
+from app.main.views import PasswordGeneratorView
+from app.main.forms import GeneratePasswordForm
 
-from flask.views import View
+from flask import render_template
+from flask_login import login_required
 
 
-class PasswordGeneratorView(View):
+@main_bp.route('/', methods=['GET', 'POST'])
+@login_required
+def index():
+    form = GeneratePasswordForm()
+    if form.validate_on_submit():
+        password_generate_view = PasswordGeneratorView()
+        return password_generate_view.dispatch_request()
+    return render_template('index.html', form=form)
 
-    def dispatch_request(self):
-        password = PasswordGenerator.generate_password()
-        return next(password)
+
+@main_bp.route('/password', methods=['GET', 'POST'])
+@login_required
+def generate_user_password():
+    password_generate_view = PasswordGeneratorView()
+    return password_generate_view.dispatch_request()
+

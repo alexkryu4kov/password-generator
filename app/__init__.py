@@ -14,8 +14,6 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object('app.main.config.Config')
 
-    app.add_url_rule('/password', view_func=PasswordGeneratorView.as_view('password_generator_view'))
-
     db.init_app(app)
 
     login_manager = LoginManager()
