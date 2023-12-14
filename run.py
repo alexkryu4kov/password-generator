@@ -1,8 +1,8 @@
-from app.main import main_bp
 from app import create_app
 from app.db import db
 from app.login import login_bp
 from app.login.models import User
+from app.main import main_bp
 
 app = create_app()
 

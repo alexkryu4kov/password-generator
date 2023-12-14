@@ -1,13 +1,12 @@
 from flask import Flask
 from flask_login import LoginManager
+from flask_migrate import Migrate
 
 from app.db import db
 from app.login import login_bp
 from app.login.models import User
-from app.main.routes import PasswordGeneratorView
 from app.main import main_bp
-
-from flask_migrate import Migrate
+from app.main.routes import PasswordGeneratorView
 
 
 def create_app():
