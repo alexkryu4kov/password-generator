@@ -7,6 +7,7 @@
   {% if current_user.is_authenticated %}
       <p>Hello, {{ current_user.username }}!</p>
       <p><a href="{{ url_for('main.generate_user_password') }}">Generate Password</a></p>
+      <p><a href="{{ url_for('main.user_passwords') }}">Check Passwords</a></p>
       <p><a href="{{ url_for('login.logout') }}">Logout</a></p>
   {% else %}
       <form action="{{ url_for('login.login') }}" method="get">

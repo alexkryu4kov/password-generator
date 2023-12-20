@@ -10,6 +10,7 @@ class PasswordGenerator:
 
     @classmethod
     def generate_password(cls, length=15, uppercase=False, digits=False, symbols=False):
+        # TODO: autofill parameters based on previous site usage
         password = ''.join(random.choice(string.ascii_letters).lower() for _ in range(length))
         logger.info(f'Original password: {password}')
 
