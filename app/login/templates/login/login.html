@@ -3,7 +3,9 @@
 {% block content %}
   <h2>Login</h2>
   <form method="post" action="{{ url_for('login.login') }}">
+    <p>Form Data: {{ form.data }}</p>
     {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
     <label for="username">Username:</label>
     {{ form.username(size=20) }}
     <br>
