@@ -30,8 +30,6 @@ function generatePassword(length, useUppercase, useDigits, useSymbols) {
 
 function encryptPassword(password, masterPassword) {
     var encrypted = CryptoJS.AES.encrypt(password, masterPassword);
-    console.log('123');
-    console.log(encrypted.toString());
     return encrypted.toString();
 }
 
