@@ -44,6 +44,7 @@ def create_app():
 
     console_handler = get_console_logger_handler()
     app.logger.addHandler(console_handler)
+    app.logger.setLevel(logging.INFO)
 
     @login_manager.user_loader
     def load_user(user_id):
