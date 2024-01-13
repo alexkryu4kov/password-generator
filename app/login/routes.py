@@ -1,6 +1,5 @@
 from flask import current_app, flash, redirect, render_template, request, url_for, session
 from flask_login import current_user, login_required, login_user, logout_user
-from flask_wtf import csrf
 
 from app.db import db
 from app.login import login_bp
@@ -13,8 +12,6 @@ def login():
     form = LoginForm()
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
-    # if not session.get('csrf_token'):
-    #    csrf.generate_csrf()
     if form.validate_on_submit():
         username = request.form['username']
         password = request.form['password']
@@ -40,11 +37,10 @@ def logout():
 def register():
     form = RegistrationForm()
 
-    # csrf.generate_csrf()
-
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data)
         user.set_password(form.password.data)
+        current_app.logger.info(f'Set password for {form.username.data}')
 
         db.session.add(user)
         db.session.commit()

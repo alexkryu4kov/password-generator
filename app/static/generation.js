@@ -1,3 +1,14 @@
+let CryptoJS;
+
+if (typeof window === 'undefined') {
+    // Jest environment
+    CryptoJS = require("crypto-js");
+} else {
+    // Browser environment
+    CryptoJS = window.CryptoJS;
+}
+
+
 function generateAndEncryptPassword(masterPassword) {
     var length = parseInt(document.getElementById('length').value);
     var useUppercase = document.getElementById('uppercase').checked;
