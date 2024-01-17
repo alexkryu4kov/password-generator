@@ -1,7 +1,9 @@
 #!/bin/bash
 
+source .env
+
 # Wait for the MySQL service
-./wait-for-db.sh localhost 3306 --
+./wait-for-db.sh ${MYSQL_HOST} 3306 --
 flask db migrate
 flask db upgrade
 

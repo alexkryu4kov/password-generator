@@ -1,4 +1,4 @@
-"""empty message
+"""add password_hash field
 
 Revision ID: d9a02099da97
 Revises: 2a18aedaf589

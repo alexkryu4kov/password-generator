@@ -1,4 +1,4 @@
-"""empty message
+"""add password_storage model
 
 Revision ID: 2a18aedaf589
 Revises: e76f8ce6c81a
