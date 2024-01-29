@@ -1,32 +1,34 @@
 # Password Generator
 
-The system to generate and store passwords for different websites
+A system to generate and store passwords for different websites
 
 # Use Case
 
-Registration on new website requires a password. 
-It's much more safe to separate passwords for different resources and generate a new one for new registration.
-This app allows to generate passwords for specific site based on such criterias: length, are symbols/numbers/upper case required
+When registering on a new website, a password is required.   
+It's much safer to use separate passwords for different resources and to generate a new one for each registration.   
+This app allows the generation of passwords for a specific site   
+based on criteria such as length, and the inclusion of symbols, numbers, and uppercase letters.
 
-Also, you can get list of all passwords for your websites
+Additionally, you can retrieve a list of all your passwords for various websites.
 
 # Safety Concerns
 
-Passwords stores as hashes in database and 'master-password' is using for decode them. 
-'master-password' NEVER EVER saved anywhere and even doesn't send to backend part, 
-so no risks to lost it during http request. It uses strictly on browser side
+Passwords are stored as hashes in the database, and a 'master password' is used to decode them.  
+The 'master password' is NEVER saved anywhere and is not transmitted to the backend,   
+so there's no risk of losing it during an HTTP request.   
+It is used strictly on the browser side.
 
 # Technologies
 
-Flask (+gunicorn)
+Flask (with Gunicorn)
 Vanilla JavaScript for password generation
-MySQL for storing the passwords
+MySQL for storing passwords
 
 # How to run
 
-Set environment variables for .env file - look at env.example
+Set environment variables according to the .env file (see env.example).
 docker-compose up --build
 
 # Plans
 
-Make a simple interface for users to access for their passwords
+Develop a simple interface for users to access their passwords
