@@ -25,7 +25,7 @@ MySQL for storing the passwords
 # How to run
 
 Set environment variables for .env file - look at env.example
-docker build -t password_app && docker run -p 5000:5000 password_app
+docker-compose up --build
 
 # Plans
 
